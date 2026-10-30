@@ -51,3 +51,13 @@ def parse_json(data):
 ######################################################################
 # INSERT CODE HERE
 ######################################################################
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify(status="OK"), 200
+
+@app.route("/song", methods=["GET"])
+def get_songs():
+    songs = list(db.songs.find({}))
+    return parse_json(songs), 200
